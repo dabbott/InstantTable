@@ -32,14 +32,12 @@ function EditableCell({
   onEdit,
   value,
   onSubmit,
-  onCancel,
   placeholder,
 }: {
   isEditing: boolean;
   onEdit: () => void;
   value?: string;
   onSubmit: (value: string) => void;
-  onCancel: () => void;
   placeholder?: string;
 }) {
   const ref = useRef<HTMLInputElement>(null);
@@ -65,7 +63,9 @@ function EditableCell({
           type="text"
           readOnly={!isEditing}
           onFocus={onEdit}
-          onBlur={onCancel}
+          onBlur={() => {
+            onSubmit(ref.current?.value ?? "");
+          }}
           style={{
             appearance: "none",
             border: "none",
@@ -88,6 +88,8 @@ function EditableCell({
               // Blur and deselect
               event.currentTarget.setSelectionRange(0, 0);
               ref.current?.blur();
+              // Set to old value
+              event.currentTarget.value = value ?? "";
             }
           }}
         />
@@ -123,7 +125,14 @@ function CurrentTable({ tableId }: { tableId: string }) {
     <Table.Root variant="surface" size="1">
       <Table.Header>
         <Table.Row>
-          <Table.ColumnHeaderCell width="10px">#</Table.ColumnHeaderCell>
+          <Table.ColumnHeaderCell
+            width="10px"
+            style={{
+              borderRight: "1px solid var(--gray-a4)",
+            }}
+          >
+            #
+          </Table.ColumnHeaderCell>
           <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
           <Table.ColumnHeaderCell>Company</Table.ColumnHeaderCell>
           <Table.ColumnHeaderCell width="0"></Table.ColumnHeaderCell>
@@ -159,9 +168,6 @@ function CurrentTable({ tableId }: { tableId: string }) {
                       transact([tx.rows[row.id].update({ [columnId]: value })]);
                       setEditingCell(undefined);
                     }}
-                    onCancel={() => {
-                      setEditingCell(undefined);
-                    }}
                     placeholder={
                       columnId.slice(0, 1).toUpperCase() + columnId.slice(1)
                     }
@@ -171,6 +177,7 @@ function CurrentTable({ tableId }: { tableId: string }) {
               <Table.Cell>
                 <Box px="1">
                   <Button
+                    tabIndex={-1}
                     size="1"
                     variant="ghost"
                     style={{
