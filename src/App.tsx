@@ -223,9 +223,7 @@ export default function App() {
   >();
 
   const tables = useQuery({
-    tables: {
-      rows: {},
-    },
+    tables: {},
   }) as {
     isLoading: boolean;
     data: TablesData;
