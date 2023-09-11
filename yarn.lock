@@ -408,10 +408,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@instantdb/react@^0.3.31":
-  version "0.3.31"
-  resolved "https://registry.yarnpkg.com/@instantdb/react/-/react-0.3.31.tgz#045bda83d468e15e8661933dd1eaf9004e97edd6"
-  integrity sha512-jgUKCxLf/CKcU3pYqFVIDxKuPt01AbFgD5i51KLBSBB1S3WpwASu85KyTVo0Yo/CTLMPAa5ts0E2xC4EocfN6g==
+"@instantdb/react@^0.3.32":
+  version "0.3.32"
+  resolved "https://registry.yarnpkg.com/@instantdb/react/-/react-0.3.32.tgz#77b2ab8da2a568523a3d9e56e6559a0f74be1bd0"
+  integrity sha512-DkY96z1Bn2fBzfPXd4Ws4L4ED0AY0UEssyBvQmLnBNCwsiPfjIH00mmrnS0+OXP6+yu4W/0X5s51RcsRJEWCcw==
   dependencies:
     immer "^10.0.2"
     object-hash "^3.0.0"
